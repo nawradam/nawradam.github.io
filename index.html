@@ -1,49 +1,232 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <title>Nawradam | Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faiz Syauqi | Portfolio</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        bg: '#050505',       // The deep black background
+                        card: '#0F0F0F',     // Slightly lighter for cards
+                        accent: '#FF9F43',   // The orange/gold color from your text
+                        subtext: '#888888',  // Grey text
+                        border: '#222222'    // Subtle borders
+                    },
+                    backgroundImage: {
+                        'glow': 'radial-gradient(circle, rgba(255,159,67,0.15) 0%, rgba(5,5,5,0) 70%)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        body {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        /* Smooth fading for the nav items */
+        .nav-item.active {
+            background-color: white;
+            color: black;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-bg text-white antialiased selection:bg-accent selection:text-black">
 
-  <!-- HOME -->
-  <section id="home">
-    <h1>Hi, I'm Nawradam</h1>
-    <p>IT student passionate about data, automation, and cybersecurity.</p>
+    <section id="home" class="min-h-screen flex items-center justify-center px-6 pt-10 pb-20 relative overflow-hidden">
+        
+        <div class="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-glow -translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
 
-    <a href="#bio">About Me</a>
-    <a href="#projects">Projects</a>
-  </section>
+        <div class="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center z-10">
+            
+            <div class="space-y-8">
+                <h1 class="text-6xl md:text-8xl font-bold leading-tight tracking-tight">
+                    Hi, I'm <span class="text-accent block">Faiz<br>Syauqi</span>
+                </h1>
+                
+                <p class="text-subtext text-xl max-w-lg leading-relaxed">
+                    An IT student with a passion for technology and a love for gaming. I build things for the web and enjoy exploring new tech.
+                </p>
+                
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#biography" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition-all transform hover:scale-105">
+                        ABOUT ME
+                    </a>
+                    <a href="#projects" class="px-8 py-4 bg-transparent border border-white/20 text-white font-bold rounded-full hover:border-white transition-all">
+                        VIEW PROJECTS
+                    </a>
+                </div>
+            </div>
 
-  <!-- BIOGRAPHY -->
-  <section id="bio">
-    <h2>Biography</h2>
-    <p>
-      I am an IT student from Malaysia with a strong interest in data analysis,
-      system automation, and cybersecurity. I enjoy building projects and
-      continuously improving my technical skills.
-    </p>
+            <div class="relative flex justify-center lg:justify-end">
+                <div class="relative w-full max-w-md aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-card">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Faiz Syauqi" 
+                         class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <h3>Skills</h3>
-    <ul>
-      <li>Python</li>
-      <li>SQL</li>
-      <li>Linux</li>
-      <li>Basic Cybersecurity</li>
-    </ul>
-  </section>
+    <section id="biography" class="min-h-screen flex items-center justify-center px-6 py-20 bg-bg">
+        <div class="max-w-6xl w-full">
+            
+            <div class="mb-16">
+                <h2 class="text-5xl font-bold mb-6">At a Glance</h2>
+                <div class="flex items-center gap-4">
+                    <div class="w-1 h-8 bg-accent"></div>
+                    <p class="text-subtext text-lg">A quick snapshot of who I am and what I do.</p>
+                </div>
+            </div>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <h2>Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div class="bg-card p-10 rounded-[32px] border border-white/5 hover:border-white/20 transition-all group">
+                    <div class="w-12 h-12 flex items-center justify-center text-3xl mb-6 text-purple-400">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">IT Student</h3>
+                    <p class="text-subtext leading-relaxed">
+                        Currently pursuing a degree in Information Technology, learning everything from web development to system administration.
+                    </p>
+                </div>
 
-    <h3>Log Analyzer</h3>
-    <p>Python script to analyze system logs and detect suspicious activity.</p>
+                <div class="bg-card p-10 rounded-[32px] border border-white/5 hover:border-white/20 transition-all group">
+                    <div class="w-12 h-12 flex items-center justify-center text-3xl mb-6 text-blue-400">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Web Enthusiast</h3>
+                    <p class="text-subtext leading-relaxed">
+                        I enjoy building websites and experimenting with frontend technologies like HTML, CSS, and JavaScript.
+                    </p>
+                </div>
 
-    <h3>Data Cleaning Project</h3>
-    <p>Processed and analyzed CSV data using Python.</p>
-  </section>
+                <div class="bg-card p-10 rounded-[32px] border border-white/5 hover:border-white/20 transition-all group">
+                    <div class="w-12 h-12 flex items-center justify-center text-3xl mb-6 text-indigo-400">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Casual Gamer</h3>
+                    <p class="text-subtext leading-relaxed">
+                        When I'm not coding, you'll find me gaming. I enjoy a variety of genres from FPS to RPGs and everything in between.
+                    </p>
+                </div>
 
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="min-h-screen px-6 py-20 bg-bg flex flex-col justify-between">
+        <div class="max-w-6xl w-full mx-auto">
+            <h2 class="text-5xl font-bold mb-12">Projects</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="group relative aspect-video bg-card rounded-[32px] overflow-hidden border border-white/5 cursor-pointer">
+                    <div class="absolute inset-0 flex items-center justify-center text-subtext group-hover:text-white transition-colors">
+                        <span class="text-xl font-medium">Project One Preview</span>
+                    </div>
+                    <div class="absolute inset-0 bg-accent/0 group-hover:bg-accent/5 transition-colors"></div>
+                </div>
+
+                <div class="group relative aspect-video bg-card rounded-[32px] overflow-hidden border border-white/5 cursor-pointer">
+                    <div class="absolute inset-0 flex items-center justify-center text-subtext group-hover:text-white transition-colors">
+                        <span class="text-xl font-medium">Project Two Preview</span>
+                    </div>
+                    <div class="absolute inset-0 bg-accent/0 group-hover:bg-accent/5 transition-colors"></div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-32 w-full max-w-6xl mx-auto text-center">
+            <div class="flex justify-center gap-8 mb-10">
+                <a href="#" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-xl hover:bg-white hover:text-black hover:border-white transition-all">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="#" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-xl hover:bg-white hover:text-black hover:border-white transition-all">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+                <a href="#" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-xl hover:bg-white hover:text-black hover:border-white transition-all">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="#" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-xl hover:bg-white hover:text-black hover:border-white transition-all">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+            </div>
+            <p class="text-subtext text-sm font-light tracking-wide">
+                &copy; 2026 Faiz Syauqi. All rights reserved.
+            </p>
+        </footer>
+    </section>
+
+    <div class="fixed bottom-10 left-0 right-0 z-50 flex justify-center px-4">
+        <nav class="bg-[#111111]/90 backdrop-blur-xl border border-white/10 rounded-full p-1.5 shadow-2xl flex items-center gap-1">
+            
+            <a href="#home" id="nav-home" class="nav-item px-8 py-3 rounded-full text-sm font-medium text-gray-400 hover:text-white transition-all">
+                Home
+            </a>
+            
+            <a href="#biography" id="nav-bio" class="nav-item px-8 py-3 rounded-full text-sm font-medium text-gray-400 hover:text-white transition-all">
+                Biography
+            </a>
+            
+            <a href="#projects" id="nav-projects" class="nav-item px-8 py-3 rounded-full text-sm font-medium text-gray-400 hover:text-white transition-all">
+                Projects
+            </a>
+
+        </nav>
+    </div>
+
+    <script>
+        const sections = document.querySelectorAll("section");
+        const navItems = document.querySelectorAll(".nav-item");
+
+        window.onscroll = () => {
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navItems.forEach((li) => {
+                li.classList.remove("active");
+                li.classList.remove("bg-white");
+                li.classList.remove("text-black");
+                li.classList.add("text-gray-400");
+                
+                if (li.getAttribute("href").includes(current)) {
+                    li.classList.add("active");
+                    // Add Tailwind classes for the 'Active' white pill look
+                    li.classList.remove("text-gray-400");
+                    li.classList.add("bg-white", "text-black");
+                }
+            });
+        };
+        
+        // Trigger once on load to set initial state
+        window.dispatchEvent(new Event('scroll'));
+    </script>
 </body>
 </html>
