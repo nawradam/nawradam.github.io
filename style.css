@@ -1,0 +1,29 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  line-height: 1.6;
+}
+
+section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+#home {
+  background: #111;
+  color: white;
+}
+
+a {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 16px;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+a:hover {
+  background: #0056b3;
+}
