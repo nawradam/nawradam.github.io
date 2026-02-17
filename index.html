@@ -44,7 +44,7 @@
     /* Reveal animation */
     .reveal {
       opacity: 0;
-      transform: translateY(40px);
+      transform: translateY(30px);
       animation: reveal 1s ease forwards;
     }
 
@@ -88,52 +88,52 @@
   </style>
 </head>
 
-<body class="bg-bg text-white antialiased pb-40">
+<body class="bg-bg text-white antialiased pb-32 lg:pb-0">
 
-<section class="min-h-screen flex items-center px-6">
-  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<section class="min-h-screen flex items-center px-6 py-24 lg:py-0">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-    <div class="space-y-8">
-      <h1 class="text-6xl md:text-8xl font-extrabold leading-tight reveal delay-1">
+    <div class="flex justify-center order-1 lg:order-2 reveal delay-1">
+      <div class="float bg-white/5 backdrop-blur-xl border border-white/15 rounded-3xl shadow-2xl overflow-hidden w-64 h-80 lg:w-80 lg:h-[440px] hover:shadow-glow transition">
+        <img src="images/profile/noor.jpg" class="w-full h-full object-cover">
+      </div>
+    </div>
+
+    <div class="space-y-6 lg:space-y-8 order-2 lg:order-1 text-center lg:text-left">
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight reveal delay-2">
         Hi, I'm
-        <span class="block text-accent glow-text">
-          Noor<br>Adam
+        <span class="block text-accent glow-text mt-2 lg:mt-0">
+          Noor<br class="hidden lg:block"> Adam
         </span>
       </h1>
 
-      <p class="text-subtext text-xl max-w-xl reveal delay-2 leading-relaxed">
+      <p class="text-subtext text-lg lg:text-xl max-w-xl mx-auto lg:mx-0 reveal delay-3 leading-relaxed">
         IT student from <span class="text-white">UiTM Shah Alam</span> with a strong interest in
         data, automation, AI, and cybersecurity.
         I focus on building real systems — not just learning theory.
       </p>
 
-      <div class="flex gap-4 pt-6 reveal delay-3">
+      <div class="flex gap-4 pt-4 justify-center lg:justify-start reveal delay-3">
         <a href="biography.html"
-           class="px-8 py-4 bg-white text-black rounded-full font-semibold hover:scale-105 hover:shadow-glow transition">
+           class="px-8 py-3 lg:py-4 bg-white text-black rounded-full font-semibold hover:scale-105 hover:shadow-glow transition text-sm lg:text-base">
           ABOUT ME
         </a>
         <a href="projects.html"
-           class="px-8 py-4 border border-white/20 rounded-full font-semibold hover:border-accent hover:text-accent transition">
+           class="px-8 py-3 lg:py-4 border border-white/20 rounded-full font-semibold hover:border-accent hover:text-accent transition text-sm lg:text-base">
           VIEW PROJECTS
         </a>
       </div>
 
-      <div class="social flex gap-8 pt-8 text-2xl reveal delay-3">
+      <div class="social flex gap-8 pt-6 justify-center lg:justify-start text-2xl reveal delay-3 text-white/60">
         <a href="https://instagram.com/999nawr" target="_blank"><i class="fab fa-instagram"></i></a>
         <a href="https://tiktok.com/@999nawr" target="_blank"><i class="fab fa-tiktok"></i></a>
         <a href="#" target="_blank"><i class="fab fa-github"></i></a>
         <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
       </div>
 
-      <p class="text-sm text-subtext pt-6 reveal delay-3">
+      <p class="text-xs lg:text-sm text-subtext pt-4 reveal delay-3">
         © 2026 Noor Adam. Crafted with precision.
       </p>
-    </div>
-
-    <div class="flex justify-center reveal delay-2">
-      <div class="float bg-white/5 backdrop-blur-xl border border-white/15 rounded-3xl shadow-2xl overflow-hidden w-80 h-[440px] hover:shadow-glow transition">
-        <img src="images/profile/noor.jpg" class="w-full h-full object-cover">
-      </div>
     </div>
 
   </div>
