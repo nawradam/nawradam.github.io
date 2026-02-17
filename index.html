@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Noor Adam | Biography</title>
+  <title>Noor Adam | Home</title>
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <script>
     tailwind.config = {
@@ -22,7 +22,7 @@
             subtext: '#9A9A9A'
           },
           boxShadow: {
-            glow: '0 0 40px rgba(255,159,67,0.15)'
+            glow: '0 0 50px rgba(255,159,67,0.25)'
           }
         }
       }
@@ -30,178 +30,119 @@
   </script>
 
   <style>
-    /* Animated background */
+    /* Ambient background */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(circle at 20% 20%, rgba(255,159,67,0.08), transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(255,159,67,0.05), transparent 40%);
+        radial-gradient(circle at 20% 30%, rgba(255,159,67,0.08), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255,159,67,0.05), transparent 40%);
       z-index: -1;
-      animation: floatBg 12s ease-in-out infinite alternate;
     }
 
-    @keyframes floatBg {
-      from { transform: translateY(0px); }
-      to { transform: translateY(-40px); }
-    }
-
-    /* Glass card */
-    .glass-card {
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 28px;
-      padding: 32px;
-      transition: all .35s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .glass-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top left, rgba(255,159,67,0.12), transparent 40%);
-      opacity: 0;
-      transition: opacity .35s ease;
-    }
-
-    .glass-card:hover::after {
-      opacity: 1;
-    }
-
-    .glass-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-    }
-
-    /* Fade-in animation */
+    /* Reveal animation */
     .reveal {
       opacity: 0;
       transform: translateY(40px);
-      animation: reveal 0.9s ease forwards;
+      animation: reveal 1s ease forwards;
     }
 
     @keyframes reveal {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Stagger */
     .delay-1 { animation-delay: .1s }
-    .delay-2 { animation-delay: .2s }
-    .delay-3 { animation-delay: .3s }
-    .delay-4 { animation-delay: .4s }
+    .delay-2 { animation-delay: .25s }
+    .delay-3 { animation-delay: .4s }
+
+    /* Floating image */
+    .float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    /* Name glow pulse */
+    .glow-text {
+      animation: glowPulse 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes glowPulse {
+      from { text-shadow: 0 0 20px rgba(255,159,67,0.3); }
+      to { text-shadow: 0 0 45px rgba(255,159,67,0.6); }
+    }
+
+    /* Social hover */
+    .social a {
+      transition: all .3s ease;
+    }
+    .social a:hover {
+      color: #FF9F43;
+      transform: translateY(-4px) scale(1.1);
+      text-shadow: 0 0 20px rgba(255,159,67,.4);
+    }
   </style>
 </head>
 
 <body class="bg-bg text-white antialiased pb-40">
 
-<section class="max-w-6xl mx-auto px-6 pt-24 pb-20">
+<section class="min-h-screen flex items-center px-6">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
-  <!-- ABOUT -->
-  <div class="grid md:grid-cols-2 gap-16 items-center mb-24">
-    
-    <div class="reveal delay-1 bg-white/5 backdrop-blur-xl border border-white/15 rounded-3xl overflow-hidden w-72 h-96 mx-auto shadow-glow hover:scale-[1.02] transition">
-      <img src="images/profile/noor.jpg" class="w-full h-full object-cover">
-    </div>
-
-    <div class="space-y-6 reveal delay-2">
-      <h1 class="text-5xl font-extrabold tracking-tight">
-        About <span class="text-accent">Me</span>
+    <div class="space-y-8">
+      <h1 class="text-6xl md:text-8xl font-extrabold leading-tight reveal delay-1">
+        Hi, I'm
+        <span class="block text-accent glow-text">
+          Noor<br>Adam
+        </span>
       </h1>
-      <p class="text-subtext text-lg leading-relaxed">
-        Hi, I’m Noor Adam — an IT student driven by curiosity beyond the classroom.
-        I actively explore <span class="text-white">AI, data systems, and cybersecurity</span>.
+
+      <p class="text-subtext text-xl max-w-xl reveal delay-2 leading-relaxed">
+        IT student from <span class="text-white">UiTM Shah Alam</span> with a strong interest in
+        data, automation, AI, and cybersecurity.
+        I focus on building real systems — not just learning theory.
       </p>
-      <p class="text-subtext text-lg leading-relaxed">
-        I enjoy breaking systems apart to understand how they work — from code to infrastructure —
-        and I’m constantly sharpening my skills through hands-on projects.
-      </p>
-    </div>
-  </div>
 
-  <!-- SKILLS -->
-  <h2 class="text-4xl font-extrabold mb-12 reveal">Skills</h2>
+      <div class="flex gap-4 pt-6 reveal delay-3">
+        <a href="biography.html"
+           class="px-8 py-4 bg-white text-black rounded-full font-semibold hover:scale-105 hover:shadow-glow transition">
+          ABOUT ME
+        </a>
+        <a href="projects.html"
+           class="px-8 py-4 border border-white/20 rounded-full font-semibold hover:border-accent hover:text-accent transition">
+          VIEW PROJECTS
+        </a>
+      </div>
 
-  <div class="grid md:grid-cols-2 gap-8">
+      <div class="social flex gap-8 pt-8 text-2xl reveal delay-3">
+        <a href="https://instagram.com/999nawr" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://tiktok.com/@999nawr" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+      </div>
 
-    <div class="glass-card reveal delay-1">
-      <h3 class="text-2xl font-bold mb-2">Web Development</h3>
-      <p class="text-subtext">
-        HTML, CSS, JavaScript, Tailwind CSS — focused on clean UI, responsiveness, and UX clarity.
-      </p>
-    </div>
-
-    <div class="glass-card reveal delay-2">
-      <h3 class="text-2xl font-bold mb-2">Java Programming</h3>
-      <p class="text-subtext">
-        Strong OOP foundations including inheritance, encapsulation, polymorphism, and structure.
-      </p>
-    </div>
-
-    <div class="glass-card reveal delay-3">
-      <h3 class="text-2xl font-bold mb-2">Database Management</h3>
-      <p class="text-subtext">
-        SQL, relational models, normalization, and structured data handling.
+      <p class="text-sm text-subtext pt-6 reveal delay-3">
+        © 2026 Noor Adam. Crafted with precision.
       </p>
     </div>
 
-    <div class="glass-card reveal delay-4">
-      <h3 class="text-2xl font-bold mb-2">AI & Machine Learning</h3>
-      <p class="text-subtext">
-        Exploring ML fundamentals, data-driven models, and intelligent automation.
-      </p>
-    </div>
-
-    <div class="glass-card reveal delay-1">
-      <h3 class="text-2xl font-bold mb-2">Cybersecurity</h3>
-      <p class="text-subtext">
-        Interest in vulnerabilities, system defense mechanisms, and secure architectures.
-      </p>
-    </div>
-
-    <div class="glass-card reveal delay-2">
-      <h3 class="text-2xl font-bold mb-2">Networking</h3>
-      <p class="text-subtext">
-        Understanding protocols, architectures, and real-world network communication.
-      </p>
-    </div>
-
-  </div>
-
-  <!-- EDUCATION -->
-  <h2 class="text-4xl font-extrabold mt-24 mb-12 reveal">Education</h2>
-
-  <div class="space-y-6">
-
-    <div class="glass-card reveal delay-1">
-      <h3 class="text-2xl font-bold">Bachelor of Information Technology (Hons)</h3>
-      <p class="text-accent mt-1">UiTM — Present</p>
-    </div>
-
-    <div class="glass-card reveal delay-2">
-      <h3 class="text-2xl font-bold">Matriculation (Science)</h3>
-      <p class="text-subtext mt-1">CGPA: 3.51</p>
-    </div>
-
-    <div class="glass-card reveal delay-3">
-      <h3 class="text-2xl font-bold">High School (Science Stream)</h3>
-      <p class="text-subtext mt-1">SPM: 6A</p>
+    <div class="flex justify-center reveal delay-2">
+      <div class="float bg-white/5 backdrop-blur-xl border border-white/15 rounded-3xl shadow-2xl overflow-hidden w-80 h-[440px] hover:shadow-glow transition">
+        <img src="images/profile/noor.jpg" class="w-full h-full object-cover">
+      </div>
     </div>
 
   </div>
 </section>
 
-<!-- NAV -->
 <div class="fixed bottom-10 left-0 right-0 flex justify-center z-50">
   <nav class="bg-white/10 backdrop-blur-2xl border border-white/20 rounded-full p-2 flex gap-1 shadow-2xl">
-    <a href="index.html" class="px-8 py-3 text-gray-400 hover:text-white rounded-full text-sm transition">Home</a>
-    <a href="biography.html" class="px-8 py-3 bg-white text-black rounded-full text-sm font-medium">Biography</a>
+    <a href="index.html" class="px-8 py-3 bg-white text-black rounded-full text-sm font-medium">Home</a>
+    <a href="biography.html" class="px-8 py-3 text-gray-400 hover:text-white rounded-full text-sm transition">Biography</a>
     <a href="projects.html" class="px-8 py-3 text-gray-400 hover:text-white rounded-full text-sm transition">Projects</a>
   </nav>
 </div>
