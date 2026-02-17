@@ -75,6 +75,12 @@
   .scrollbar-hide::-webkit-scrollbar { display: none; }
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
+  /* Custom Scrollbar for modal content */
+  .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+  .custom-scrollbar::-webkit-scrollbar-track { background: #1a1a1a; }
+  .custom-scrollbar::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #FF9F43; }
+
   .thumb-item {
     transition: all .3s ease;
   }
@@ -112,19 +118,22 @@
     </div>
 </section>
 
-<div id="modal" class="fixed inset-0 bg-black/95 backdrop-blur-sm hidden z-50 flex items-end md:items-center justify-center transition-opacity duration-500">
-  <button onclick="closeProject()" class="absolute top-6 right-6 text-white/50 hover:text-white bg-white/10 p-2 rounded-full z-[60] transition">
+<div id="modal" class="fixed inset-0 bg-black/95 backdrop-blur-sm hidden z-50 flex items-center justify-center transition-opacity duration-500 p-4">
+  
+  <button onclick="closeProject()" class="absolute top-6 right-6 text-white/50 hover:text-white bg-white/10 w-10 h-10 flex items-center justify-center rounded-full z-[60] transition backdrop-blur-md">
     <i class="fas fa-times"></i>
   </button>
-  <div class="bg-card w-full max-w-3xl md:rounded-3xl rounded-t-3xl border border-white/10 overflow-hidden shadow-2xl max-h-[90vh] flex flex-col relative animate-float">
+
+  <div class="bg-card w-full max-w-4xl rounded-3xl border border-white/10 overflow-hidden shadow-2xl h-[85vh] md:h-auto md:max-h-[90vh] flex flex-col relative animate-float">
     
-    <div class="relative bg-surface aspect-[4/3] flex items-center justify-center group">
+    <div class="relative bg-surface w-full h-[40vh] md:h-auto md:aspect-video flex-shrink-0 flex items-center justify-center group border-b border-white/5">
+      
       <img id="modal-img" src="" class="w-full h-full object-contain transition-all duration-500">
       
-      <button onclick="changeSlide(-1)" class="absolute left-4 bg-black/50 hover:bg-black/80 text-white p-2 rounded-full backdrop-blur transition">
+      <button onclick="changeSlide(-1)" class="absolute left-4 bg-black/50 hover:bg-black/80 text-white w-10 h-10 flex items-center justify-center rounded-full backdrop-blur transition">
         <i class="fas fa-chevron-left"></i>
       </button>
-      <button onclick="changeSlide(1)" class="absolute right-4 bg-black/50 hover:bg-black/80 text-white p-2 rounded-full backdrop-blur transition">
+      <button onclick="changeSlide(1)" class="absolute right-4 bg-black/50 hover:bg-black/80 text-white w-10 h-10 flex items-center justify-center rounded-full backdrop-blur transition">
         <i class="fas fa-chevron-right"></i>
       </button>
 
@@ -133,11 +142,15 @@
       </div>
     </div>
 
-    <div class="overflow-y-auto custom-scrollbar p-6">
-      <div class="flex gap-3 overflow-x-auto scrollbar-hide mb-6" id="thumbnail-container"></div>
-      <h2 id="modal-title" class="text-3xl md:text-4xl font-bold mb-3 gradient-text">Project Title</h2>
-      <p id="modal-desc" class="text-subtext leading-relaxed text-sm mb-6"></p>
-      <div id="modal-tags" class="flex flex-wrap gap-2 cursor-pointer"></div>
+    <div class="flex-1 overflow-y-auto custom-scrollbar p-6 md:p-8 bg-card">
+      
+      <div class="flex gap-3 overflow-x-auto scrollbar-hide mb-6 pb-2" id="thumbnail-container"></div>
+      
+      <h2 id="modal-title" class="text-2xl md:text-4xl font-bold mb-3 gradient-text">Project Title</h2>
+      
+      <p id="modal-desc" class="text-subtext leading-relaxed text-sm md:text-base mb-6"></p>
+      
+      <div id="modal-tags" class="flex flex-wrap gap-2 cursor-pointer pb-4"></div>
     </div>
   </div>
 </div>
@@ -151,7 +164,6 @@
 </div>
 
 <script>
-// I have merged your beautiful design with the complete data list here
 const projectsData = {
   "freshdash": { 
     title: "FreshDash UI Design", 
@@ -175,13 +187,13 @@ const projectsData = {
     title: "Limited Focus",
     desc: "Award-winning productivity application (KL3IS Silver Medal) designed to enhance deep work sessions through restricted mobile usage.",
     tags: ["APP", "MOBILE", "PRODUCTIVITY"],
-    images: Array.from({length: 35}, (_, i) => `${i+1}.png`) // Generates 1.png to 35.png
+    images: Array.from({length: 35}, (_, i) => `${i+1}.png`) 
   },
   "car-community": {
     title: "Car Community",
     desc: "A niche social platform connecting car enthusiasts, featuring event organization, vehicle showcases, and community forums.",
     tags: ["APP", "SOCIAL", "COMMUNITY"],
-    images: Array.from({length: 25}, (_, i) => `${i+1}.png`) // Generates 1.png to 25.png
+    images: Array.from({length: 25}, (_, i) => `${i+1}.png`) 
   },
   "cisco-network": {
     title: "Cisco Network Design",
@@ -205,14 +217,12 @@ function renderProjects(filter="all") {
   grid.innerHTML = '';
   for(const key in projectsData) {
     const p = projectsData[key];
-    // Filter logic: if filter is 'all', show everything. Else check if tags include the filter.
     if(filter !== "all" && !p.tags.includes(filter)) continue;
     
     const card = document.createElement("div");
     card.className = "project-card group";
     card.onclick = () => openProject(key);
     
-    // First image is thumbnail
     card.innerHTML = `
       <img src="images/projects/${key}/${p.images[0]}" class="group-hover:scale-105 transition duration-500">
       <div class="p-6">
@@ -226,7 +236,6 @@ function renderProjects(filter="all") {
   }
 }
 
-// Filter buttons
 document.querySelectorAll(".filter-btn").forEach(btn=>{
   btn.addEventListener("click",()=> {
     document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("bg-accent","text-black"));
@@ -298,7 +307,6 @@ function updateThumbActive(){
   });
 }
 
-// Keyboard & click outside
 document.addEventListener("keydown",e=>{
   const m=document.getElementById("modal"); if(m.classList.contains("hidden"))return;
   if(e.key==="ArrowLeft") changeSlide(-1);
