@@ -32,63 +32,56 @@
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-    <!-- FreshDash -->
     <div class="project-card" onclick="openProject('freshdash')">
-      <img src="images/projects/freshdash/FreshDash Logo.png">
+      <img src="images/projects/freshdash/FreshDash Logo.png" alt="FreshDash">
       <div class="p-8">
         <h3 class="text-2xl font-bold mb-2">FreshDash</h3>
         <p class="text-subtext text-sm">E-commerce grocery app UI with AI features.</p>
       </div>
     </div>
 
-    <!-- DWASPA -->
     <div class="project-card" onclick="openProject('dwaspa')">
-      <img src="images/projects/dwaspa/DWASPA Logo.png">
+      <img src="images/projects/dwaspa/DWASPA Logo.png" alt="DWASPA">
       <div class="p-8">
         <h3 class="text-2xl font-bold mb-2">DWASPA</h3>
         <p class="text-subtext text-sm">Spa management web system.</p>
       </div>
     </div>
 
-    <!-- D'WanaConnect -->
     <div class="project-card" onclick="openProject('dwanaconnect')">
-      <img src="images/projects/dwanaconnect/D'WanaConnect Logo.png">
+      <img src="images/projects/dwanaconnect/D'WanaConnect Logo.png" alt="D'WanaConnect">
       <div class="p-8">
         <h3 class="text-2xl font-bold mb-2">D'WanaConnect</h3>
         <p class="text-subtext text-sm">Internal business communication system.</p>
       </div>
     </div>
 
-    <!-- Limited Focus -->
     <div class="project-card" onclick="openProject('limited-focus')">
-      <img src="images/projects/limited-focus/1.png">
+      <img src="images/projects/limited-focus/1.png" alt="Limited Focus">
       <div class="p-8">
         <h3 class="text-2xl font-bold mb-2">Limited Focus</h3>
         <p class="text-subtext text-sm">Productivity app (KL3IS Silver Medal).</p>
       </div>
     </div>
 
-    <!-- Car Community -->
     <div class="project-card" onclick="openProject('car-community')">
-      <img src="images/projects/car-community/1.png">
+      <img src="images/projects/car-community/1.png" alt="Car Community">
       <div class="p-8">
         <h3 class="text-2xl font-bold mb-2">Car Community</h3>
         <p class="text-subtext text-sm">Social platform for car enthusiasts.</p>
       </div>
     </div>
 
-    <!-- Cisco Network -->
     <div class="project-card" onclick="openProject('cisco-network')">
-      <img src="images/projects/cisco-network/1.png">
+      <img src="images/projects/cisco-network/1.png" alt="Cisco">
       <div class="p-8">
         <h3 class="text-2xl font-bold mb-2">Cisco Network</h3>
         <p class="text-subtext text-sm">Packet Tracer network topology.</p>
       </div>
     </div>
 
-    <!-- Life Expectancy -->
     <div class="project-card" onclick="openProject('life-expectancy-dashboard')">
-      <img src="images/projects/life-expectancy-dashboard/1.png">
+      <img src="images/projects/life-expectancy-dashboard/1.png" alt="Dashboard">
       <div class="p-8">
         <h3 class="text-2xl font-bold mb-2">Life Expectancy</h3>
         <p class="text-subtext text-sm">Data visualization dashboard.</p>
@@ -98,20 +91,35 @@
   </div>
 </section>
 
-<!-- MODAL -->
-<div id="modal" class="fixed inset-0 bg-black/80 backdrop-blur hidden z-50 flex items-center justify-center">
-  <div class="bg-card rounded-3xl max-w-6xl w-full max-h-[90vh] overflow-y-auto p-8 relative">
-    <button onclick="closeProject()" class="absolute top-6 right-6 text-3xl">×</button>
-    <div id="gallery" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+<div id="modal" class="fixed inset-0 bg-black/95 backdrop-blur hidden z-50 flex items-center justify-center">
+  
+  <button onclick="closeProject()" class="absolute top-6 right-6 text-white/50 hover:text-white text-4xl z-50 transition">&times;</button>
+
+  <button onclick="changeSlide(-1)" class="absolute left-4 md:left-8 text-white/50 hover:text-white p-4 z-50 transition">
+    <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+    </svg>
+  </button>
+
+  <div class="relative w-full max-w-5xl px-4 flex flex-col items-center">
+    <img id="modal-img" src="" class="max-h-[80vh] w-auto rounded-lg shadow-2xl object-contain">
+    
+    <p id="slide-counter" class="text-subtext mt-4 font-mono text-sm"></p>
   </div>
+
+  <button onclick="changeSlide(1)" class="absolute right-4 md:right-8 text-white/50 hover:text-white p-4 z-50 transition">
+    <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+    </svg>
+  </button>
+
 </div>
 
-<!-- NAV -->
 <div class="fixed bottom-10 left-0 right-0 flex justify-center z-50">
-  <nav class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-full p-2 flex gap-1">
-    <a href="index.html" class="nav-btn">Home</a>
-    <a href="biography.html" class="nav-btn">Biography</a>
-    <a href="projects.html" class="nav-btn active">Projects</a>
+  <nav class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-full p-2 flex gap-1 shadow-2xl">
+    <a href="index.html" class="nav-btn transition hover:bg-white/10">Home</a>
+    <a href="biography.html" class="nav-btn transition hover:bg-white/10">Biography</a>
+    <a href="projects.html" class="nav-btn active bg-white text-black">Projects</a>
   </nav>
 </div>
 
@@ -121,10 +129,13 @@
     border-radius: 32px;
     overflow: hidden;
     cursor: pointer;
-    transition: transform .3s;
+    transition: all .3s ease;
     border: 1px solid rgba(255,255,255,.05);
   }
-  .project-card:hover { transform: translateY(-6px); }
+  .project-card:hover { 
+    transform: translateY(-8px); 
+    border-color: rgba(255,255,255,.2);
+  }
   .project-card img { height: 260px; width: 100%; object-fit: cover; }
 
   .nav-btn {
@@ -132,35 +143,18 @@
     border-radius: 999px;
     color: #aaa;
     font-size: 14px;
+    font-weight: 500;
   }
-  .nav-btn.active { background: white; color: black; }
+  .nav-btn.active { color: black; font-weight: 600; }
 </style>
 
 <script>
   const projects = {
     "freshdash": [
-      "FreshDash Logo.png",
-      "Splash Screen.png",
-      "Login & Register page.png",
-      "Home page.png",
-      "Splash Screen (2).png",
-      "Product Details.png",
-      "Shopping Cart.png",
-      "Cheeckout.png",
-      "Order Confirmation.png",
-      "User Profile.png",
-      "AI-Powered Meal Planner.png"
+      "FreshDash Logo.png", "Splash Screen.png", "Login & Register page.png", "Home page.png", "Splash Screen (2).png", "Product Details.png", "Shopping Cart.png", "Cheeckout.png", "Order Confirmation.png", "User Profile.png", "AI-Powered Meal Planner.png"
     ],
     "dwaspa": [
-      "DWASPA Logo.png",
-      "DWASPA Login.png",
-      "DWASPA Customer Create Acc.png",
-      "DWASPA Customer Dashboard.png",
-      "DWASPA Customer Booking.png",
-      "DWASPA Customer Payment.png",
-      "DWASPA Management Dashboard.png",
-      "DWASPA Service Management.png",
-      "DWASPA Management Financial.png"
+      "DWASPA Logo.png", "DWASPA Login.png", "DWASPA Customer Create Acc.png", "DWASPA Customer Dashboard.png", "DWASPA Customer Booking.png", "DWASPA Customer Payment.png", "DWASPA Management Dashboard.png", "DWASPA Service Management.png", "DWASPA Management Financial.png"
     ],
     "dwanaconnect": [
       "D'WanaConnect Logo.png","12.png","13.png","14.png","15.png","16.png","17.png","18.png","19.png","20.png","21.png"
@@ -179,23 +173,61 @@
     ]
   };
 
+  let currentProject = "";
+  let currentIndex = 0;
+
   function openProject(name) {
-    const gallery = document.getElementById("gallery");
-    gallery.innerHTML = "";
-
-    projects[name].forEach(img => {
-      const el = document.createElement("img");
-      el.src = `images/projects/${name}/${img}`;
-      el.className = "rounded-2xl object-cover";
-      gallery.appendChild(el);
-    });
-
+    currentProject = name;
+    currentIndex = 0; // Reset to first image
+    updateModal();
     document.getElementById("modal").classList.remove("hidden");
+    
+    // Disable body scroll when modal is open
+    document.body.style.overflow = 'hidden';
   }
 
   function closeProject() {
     document.getElementById("modal").classList.add("hidden");
+    document.body.style.overflow = ''; // Re-enable scroll
   }
+
+  function changeSlide(direction) {
+    const totalImages = projects[currentProject].length;
+    currentIndex += direction;
+
+    // Loop logic
+    if (currentIndex < 0) {
+      currentIndex = totalImages - 1; // Go to last image
+    } else if (currentIndex >= totalImages) {
+      currentIndex = 0; // Loop back to first
+    }
+
+    updateModal();
+  }
+
+  function updateModal() {
+    const imageName = projects[currentProject][currentIndex];
+    const imgPath = `images/projects/${currentProject}/${imageName}`;
+    const total = projects[currentProject].length;
+    
+    document.getElementById("modal-img").src = imgPath;
+    document.getElementById("slide-counter").innerText = `${currentIndex + 1} / ${total}`;
+  }
+
+  // Keyboard Navigation Support
+  document.addEventListener('keydown', function(event) {
+    if (document.getElementById("modal").classList.contains("hidden")) return;
+    
+    if (event.key === "ArrowLeft") changeSlide(-1);
+    if (event.key === "ArrowRight") changeSlide(1);
+    if (event.key === "Escape") closeProject();
+  });
+
+  // Click outside to close
+  document.getElementById("modal").addEventListener("click", function(e) {
+    if (e.target === this) closeProject();
+  });
+
 </script>
 
 </body>
