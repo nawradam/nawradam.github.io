@@ -1,130 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Noor Adam | Projects</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noor Adam | Projects</title>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'sans-serif'] },
-          colors: {
-            bg: '#050505',
-            card: '#0F0F0F',
-            accent: '#FF9F43',
-            subtext: '#888888',
-            surface: '#1A1A1A'
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { sans: ['Inter', 'sans-serif'] },
+        colors: {
+          bg: '#050505',
+          card: '#0F0F0F',
+          accent: '#FF9F43',
+          subtext: '#888888',
+          surface: '#1A1A1A'
+        },
+        animation: {
+          float: 'float 6s ease-in-out infinite',
+        },
+        keyframes: {
+          float: {
+            '0%, 100%': { transform: 'translateY(0)' },
+            '50%': { transform: 'translateY(-8px)' },
           }
         }
       }
     }
-  </script>
-  
-  <style>
-    /* Custom Scrollbar for Thumbnails */
-    .scrollbar-hide::-webkit-scrollbar {
-        display: none;
-    }
-    .scrollbar-hide {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-    
-    .project-card {
-      background: #0f0f0f;
-      border-radius: 24px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: all .3s ease;
-      border: 1px solid rgba(255,255,255,.05);
-    }
-    .project-card:hover { 
-      transform: translateY(-8px); 
-      border-color: rgba(255,255,255,.2);
-    }
-    .project-card img { height: 260px; width: 100%; object-fit: cover; }
+  }
+</script>
 
-    .nav-btn {
-      padding: 12px 28px;
-      border-radius: 999px;
-      color: #aaa;
-      font-size: 14px;
-      font-weight: 500;
-    }
-    .nav-btn.active { background: white; color: black; font-weight: 600; }
-  </style>
-</head>
+<style>
+  .project-card {
+    background: #0f0f0f;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all .4s ease;
+    border: 1px solid rgba(255,255,255,.05);
+  }
+  .project-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(255,159,67,0.25);
+    border-color: rgba(255,159,67,.3);
+  }
+  .project-card img {
+    height: 260px;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .project-card:hover img {
+    transform: scale(1.1);
+  }
+
+  .nav-btn {
+    padding: 12px 28px;
+    border-radius: 999px;
+    color: #aaa;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .nav-btn.active {
+    background: white; 
+    color: black; 
+    font-weight: 600;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+  .thumb-item {
+    transition: all .3s ease;
+  }
+  .thumb-item.active {
+    border-color: #FF9F43;
+    opacity: 1 !important;
+  }
+
+  .gradient-text {
+    background: linear-gradient(90deg,#FF9F43,#FF5E7F);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 3s infinite alternate;
+  }
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+  }
+</style>
 
 <body class="bg-bg text-white antialiased pb-40">
 
 <section class="max-w-7xl mx-auto px-6 py-20">
-  <h1 class="text-5xl md:text-6xl font-bold mb-14">Projects</h1>
+  <h1 class="text-5xl md:text-6xl font-bold mb-10 gradient-text">My Projects</h1>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    
-    <div class="project-card group" onclick="openProject('freshdash')">
-      <img src="images/projects/freshdash/FreshDash Logo.png" alt="FreshDash" class="group-hover:scale-105 transition duration-500">
-      <div class="p-6">
-        <h3 class="text-2xl font-bold mb-2">FreshDash</h3>
-        <p class="text-subtext text-sm">E-commerce grocery app UI with AI features.</p>
-      </div>
-    </div>
+  <!-- FILTER BUTTONS -->
+  <div class="flex flex-wrap gap-3 mb-10">
+    <button class="filter-btn px-5 py-2 rounded-full border border-white/20 text-sm text-white/70 hover:bg-accent hover:text-black transition" data-filter="all">All</button>
+    <button class="filter-btn px-5 py-2 rounded-full border border-white/20 text-sm text-white/70 hover:bg-accent hover:text-black transition" data-filter="UI/UX">UI/UX</button>
+    <button class="filter-btn px-5 py-2 rounded-full border border-white/20 text-sm text-white/70 hover:bg-accent hover:text-black transition" data-filter="WEB">Web</button>
+    <button class="filter-btn px-5 py-2 rounded-full border border-white/20 text-sm text-white/70 hover:bg-accent hover:text-black transition" data-filter="APP">App</button>
+  </div>
 
-    <div class="project-card group" onclick="openProject('dwaspa')">
-      <img src="images/projects/dwaspa/DWASPA Logo.png" alt="DWASPA" class="group-hover:scale-105 transition duration-500">
-      <div class="p-6">
-        <h3 class="text-2xl font-bold mb-2">DWASPA</h3>
-        <p class="text-subtext text-sm">Spa management web system.</p>
-      </div>
-    </div>
-
-    </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+    <!-- Project cards will render here dynamically -->
+  </div>
 </section>
 
-<div id="modal" class="fixed inset-0 bg-black/95 backdrop-blur-sm hidden z-50 flex items-end md:items-center justify-center transition-opacity duration-300">
-  
+<!-- MODAL -->
+<div id="modal" class="fixed inset-0 bg-black/95 backdrop-blur-sm hidden z-50 flex items-end md:items-center justify-center transition-opacity duration-500">
   <button onclick="closeProject()" class="absolute top-6 right-6 text-white/50 hover:text-white bg-white/10 p-2 rounded-full z-[60] transition">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    <i class="fas fa-times"></i>
   </button>
-
-  <div class="bg-card w-full max-w-2xl md:rounded-3xl rounded-t-3xl border border-white/10 overflow-hidden shadow-2xl max-h-[90vh] flex flex-col relative">
+  <div class="bg-card w-full max-w-3xl md:rounded-3xl rounded-t-3xl border border-white/10 overflow-hidden shadow-2xl max-h-[90vh] flex flex-col relative animate-float">
     
-    <div class="relative bg-[#F5F5F7] aspect-[4/3] flex items-center justify-center group">
-        <img id="modal-img" src="" class="w-full h-full object-contain">
-        
-        <button onclick="changeSlide(-1)" class="absolute left-4 bg-black/50 hover:bg-black/80 text-white p-2 rounded-full backdrop-blur transition">
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"></path></svg>
-        </button>
-        <button onclick="changeSlide(1)" class="absolute right-4 bg-black/50 hover:bg-black/80 text-white p-2 rounded-full backdrop-blur transition">
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"></path></svg>
-        </button>
+    <div class="relative bg-surface aspect-[4/3] flex items-center justify-center group">
+      <img id="modal-img" src="" class="w-full h-full object-contain transition-all duration-500">
+      
+      <button onclick="changeSlide(-1)" class="absolute left-4 bg-black/50 hover:bg-black/80 text-white p-2 rounded-full backdrop-blur transition">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button onclick="changeSlide(1)" class="absolute right-4 bg-black/50 hover:bg-black/80 text-white p-2 rounded-full backdrop-blur transition">
+        <i class="fas fa-chevron-right"></i>
+      </button>
 
-        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur px-3 py-1 rounded-full text-xs font-mono text-white/90">
-            <span id="slide-counter">1 / 1</span>
-        </div>
+      <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur px-3 py-1 rounded-full text-xs font-mono text-white/90">
+        <span id="slide-counter">1 / 1</span>
+      </div>
     </div>
 
     <div class="overflow-y-auto custom-scrollbar p-6">
-        
-        <div class="flex gap-3 overflow-x-auto scrollbar-hide mb-6" id="thumbnail-container">
-            </div>
-
-        <div>
-            <h2 id="modal-title" class="text-2xl font-bold text-white mb-3">Project Title</h2>
-            <p id="modal-desc" class="text-subtext leading-relaxed text-sm mb-6">
-                Project description goes here.
-            </p>
-            
-            <div id="modal-tags" class="flex flex-wrap gap-2">
-                </div>
-        </div>
+      <div class="flex gap-3 overflow-x-auto scrollbar-hide mb-6" id="thumbnail-container"></div>
+      <h2 id="modal-title" class="text-3xl md:text-4xl font-bold mb-3 gradient-text">Project Title</h2>
+      <p id="modal-desc" class="text-subtext leading-relaxed text-sm mb-6"></p>
+      <div id="modal-tags" class="flex flex-wrap gap-2 cursor-pointer"></div>
     </div>
-
   </div>
 </div>
 
@@ -137,142 +153,101 @@
 </div>
 
 <script>
-  // 1. Updated Data Structure to include Text & Tags
-  const projectsData = {
-    "freshdash": {
-        title: "FreshDash UI Design",
-        desc: "Designing FreshDash application UI including user registration & login, product browsing, shopping cart, checkout & payment, order tracking, user profile and AI recipe generator for ICT552 E-Commerce Technology group assignment.",
-        tags: ["CANVA", "DESIGN", "UI/UX"],
-        images: [
-            "FreshDash Logo.png", "Splash Screen.png", "Login & Register page.png", "Home page.png", "Splash Screen (2).png", "Product Details.png", "Shopping Cart.png", "Cheeckout.png", "Order Confirmation.png", "User Profile.png", "AI-Powered Meal Planner.png"
-        ]
-    },
-    "dwaspa": {
-        title: "DWASPA System",
-        desc: "A comprehensive Spa management web system featuring customer booking, dashboard analytics, and service management tools.",
-        tags: ["WEB", "MANAGEMENT", "SYSTEM"],
-        images: [
-            "DWASPA Logo.png", "DWASPA Login.png", "DWASPA Customer Create Acc.png"
-        ]
-    },
-    // Add placeholders for others to prevent errors if clicked
-    "dwanaconnect": { title: "D'WanaConnect", desc: "Internal business communication system.", tags: ["BUSINESS", "COMMS"], images: ["D'WanaConnect Logo.png"] },
-    "limited-focus": { title: "Limited Focus", desc: "Productivity app (KL3IS Silver Medal).", tags: ["APP", "PRODUCTIVITY"], images: ["1.png"] },
-    "car-community": { title: "Car Community", desc: "Social platform for car enthusiasts.", tags: ["SOCIAL", "COMMUNITY"], images: ["1.png"] },
-    "cisco-network": { title: "Cisco Network", desc: "Packet Tracer network topology.", tags: ["NETWORKING", "CISCO"], images: ["1.png"] },
-    "life-expectancy-dashboard": { title: "Life Expectancy", desc: "Data visualization dashboard.", tags: ["DATA", "VISUALIZATION"], images: ["1.png"] }
-  };
+const projectsData = {
+  "freshdash": { title: "FreshDash UI Design", desc: "UI & UX design for grocery e-commerce app including AI meal planner and order tracking.", tags: ["UI/UX","CANVA","DESIGN"], images: ["FreshDash Logo.png","Splash Screen.png","Home page.png"] },
+  "dwaspa": { title: "DWASPA System", desc: "Spa management web system with bookings, analytics, and services.", tags: ["WEB","MANAGEMENT","SYSTEM"], images: ["DWASPA Logo.png","DWASPA Login.png"] }
+};
 
-  let currentProjectKey = "";
-  let currentIndex = 0;
+let currentProjectKey = "";
+let currentIndex = 0;
 
-  function openProject(key) {
-    if (!projectsData[key]) return;
-    
-    currentProjectKey = key;
-    currentIndex = 0;
-    
-    // Populate Text Content
-    const data = projectsData[key];
-    document.getElementById("modal-title").innerText = data.title;
-    document.getElementById("modal-desc").innerText = data.desc;
-    
-    // Populate Tags
-    const tagsContainer = document.getElementById("modal-tags");
-    tagsContainer.innerHTML = ''; // Clear old tags
-    data.tags.forEach(tag => {
-        const span = document.createElement("span");
-        span.className = "px-4 py-1.5 rounded-full border border-white/10 bg-surface text-xs font-medium text-gray-300 tracking-wide";
-        span.innerText = tag;
-        tagsContainer.appendChild(span);
-    });
-
-    updateModal();
-    renderThumbnails();
-
-    const modal = document.getElementById("modal");
-    modal.classList.remove("hidden");
-    document.body.style.overflow = 'hidden';
+function renderProjects(filter="all") {
+  const grid = document.getElementById("projects-grid");
+  grid.innerHTML = '';
+  for(const key in projectsData) {
+    const p = projectsData[key];
+    if(filter !== "all" && !p.tags.includes(filter)) continue;
+    const card = document.createElement("div");
+    card.className = "project-card group";
+    card.onclick = () => openProject(key);
+    card.innerHTML = `<img src="images/projects/${key}/${p.images[0]}" class="group-hover:scale-105 transition duration-500">
+      <div class="p-6">
+        <h3 class="text-2xl font-bold mb-2">${p.title}</h3>
+        <p class="text-subtext text-sm">${p.desc}</p>
+      </div>`;
+    grid.appendChild(card);
   }
+}
 
-  function closeProject() {
-    document.getElementById("modal").classList.add("hidden");
-    document.body.style.overflow = '';
-  }
-
-  function changeSlide(direction) {
-    const totalImages = projectsData[currentProjectKey].images.length;
-    currentIndex += direction;
-
-    if (currentIndex < 0) currentIndex = totalImages - 1;
-    else if (currentIndex >= totalImages) currentIndex = 0;
-
-    updateModal();
-    
-    // Update active state of thumbnails
-    document.querySelectorAll(".thumb-item").forEach((el, idx) => {
-        if(idx === currentIndex) {
-            el.classList.add("border-accent", "opacity-100");
-            el.classList.remove("border-transparent", "opacity-60");
-            el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        } else {
-            el.classList.remove("border-accent", "opacity-100");
-            el.classList.add("border-transparent", "opacity-60");
-        }
-    });
-  }
-
-  function jumpToSlide(index) {
-      currentIndex = index;
-      updateModal();
-      // Re-trigger highlight logic
-      changeSlide(0); 
-  }
-
-  function updateModal() {
-    const data = projectsData[currentProjectKey];
-    const imageName = data.images[currentIndex];
-    
-    // Adjust path based on your folder structure
-    const imgPath = `images/projects/${currentProjectKey}/${imageName}`;
-    
-    document.getElementById("modal-img").src = imgPath;
-    document.getElementById("slide-counter").innerText = `${currentIndex + 1} / ${data.images.length}`;
-  }
-
-  function renderThumbnails() {
-      const container = document.getElementById("thumbnail-container");
-      container.innerHTML = '';
-      const data = projectsData[currentProjectKey];
-
-      data.images.forEach((img, idx) => {
-          const thumbBtn = document.createElement("button");
-          // Styling: The active class will be handled by changeSlide(0) logic
-          thumbBtn.className = `thumb-item flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 ${idx === 0 ? 'border-accent opacity-100' : 'border-transparent opacity-60 hover:opacity-100'}`;
-          thumbBtn.onclick = () => jumpToSlide(idx);
-          
-          const thumbImg = document.createElement("img");
-          thumbImg.src = `images/projects/${currentProjectKey}/${img}`;
-          thumbImg.className = "w-full h-full object-cover bg-white";
-          
-          thumbBtn.appendChild(thumbImg);
-          container.appendChild(thumbBtn);
-      });
-  }
-
-  // Keyboard Support
-  document.addEventListener('keydown', function(event) {
-    if (document.getElementById("modal").classList.contains("hidden")) return;
-    if (event.key === "ArrowLeft") changeSlide(-1);
-    if (event.key === "ArrowRight") changeSlide(1);
-    if (event.key === "Escape") closeProject();
+// Filter buttons
+document.querySelectorAll(".filter-btn").forEach(btn=>{
+  btn.addEventListener("click",()=> {
+    document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("bg-accent","text-black"));
+    btn.classList.add("bg-accent","text-black");
+    renderProjects(btn.dataset.filter);
   });
+});
 
-  // Click outside closes modal
-  document.getElementById("modal").addEventListener("click", function(e) {
-    if (e.target === this) closeProject();
+renderProjects();
+
+// Modal Functions
+function openProject(key){
+  currentProjectKey=key;
+  currentIndex=0;
+  const data = projectsData[key];
+  document.getElementById("modal-title").innerText=data.title;
+  document.getElementById("modal-desc").innerText=data.desc;
+  const tagsC = document.getElementById("modal-tags"); tagsC.innerHTML='';
+  data.tags.forEach(tag=>{
+    const span=document.createElement("span");
+    span.className="px-4 py-1.5 rounded-full border border-white/10 bg-surface text-xs font-medium text-gray-300 tracking-wide";
+    span.innerText=tag;
+    span.onclick=()=>navigator.clipboard.writeText(tag);
+    tagsC.appendChild(span);
   });
+  updateModal(); renderThumbnails();
+  document.getElementById("modal").classList.remove("hidden"); document.body.style.overflow='hidden';
+}
 
+function closeProject(){document.getElementById("modal").classList.add("hidden"); document.body.style.overflow='';}
+function changeSlide(dir){
+  const images=projectsData[currentProjectKey].images;
+  currentIndex=(currentIndex+dir+images.length)%images.length;
+  updateModal(); updateThumbActive();
+}
+function jumpToSlide(idx){currentIndex=idx; updateModal(); updateThumbActive();}
+function updateModal(){
+  const data=projectsData[currentProjectKey];
+  document.getElementById("modal-img").src=`images/projects/${currentProjectKey}/${data.images[currentIndex]}`;
+  document.getElementById("slide-counter").innerText=`${currentIndex+1} / ${data.images.length}`;
+}
+function renderThumbnails(){
+  const container=document.getElementById("thumbnail-container"); container.innerHTML='';
+  projectsData[currentProjectKey].images.forEach((img,idx)=>{
+    const btn=document.createElement("button"); btn.className=`thumb-item flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 ${idx===0?'border-accent opacity-100':'border-transparent opacity-60 hover:opacity-100'}`;
+    btn.onclick=()=>jumpToSlide(idx);
+    const thumb=document.createElement("img"); thumb.src=`images/projects/${currentProjectKey}/${img}`; thumb.className="w-full h-full object-cover bg-white";
+    btn.appendChild(thumb); container.appendChild(btn);
+  });
+}
+function updateThumbActive(){
+  document.querySelectorAll(".thumb-item").forEach((el,idx)=>{
+    el.classList.toggle("border-accent",idx===currentIndex);
+    el.classList.toggle("opacity-100",idx===currentIndex);
+    el.classList.toggle("border-transparent",idx!==currentIndex);
+    el.classList.toggle("opacity-60",idx!==currentIndex);
+    if(idx===currentIndex) el.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"});
+  });
+}
+
+// Keyboard & click outside
+document.addEventListener("keydown",e=>{
+  const m=document.getElementById("modal"); if(m.classList.contains("hidden"))return;
+  if(e.key==="ArrowLeft") changeSlide(-1);
+  if(e.key==="ArrowRight") changeSlide(1);
+  if(e.key==="Escape") closeProject();
+});
+document.getElementById("modal").addEventListener("click",e=>{if(e.target===e.currentTarget)closeProject();});
 </script>
 
 </body>
