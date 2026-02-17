@@ -100,20 +100,18 @@
 <section class="max-w-7xl mx-auto px-6 py-20">
   <h1 class="text-5xl md:text-6xl font-bold mb-10 gradient-text">My Projects</h1>
 
-  <!-- FILTER BUTTONS -->
   <div class="flex flex-wrap gap-3 mb-10">
-    <button class="filter-btn px-5 py-2 rounded-full border border-white/20 text-sm text-white/70 hover:bg-accent hover:text-black transition" data-filter="all">All</button>
+    <button class="filter-btn px-5 py-2 rounded-full border border-white/20 text-sm text-white/70 hover:bg-accent hover:text-black transition active-filter bg-accent text-black" data-filter="all">All</button>
     <button class="filter-btn px-5 py-2 rounded-full border border-white/20 text-sm text-white/70 hover:bg-accent hover:text-black transition" data-filter="UI/UX">UI/UX</button>
     <button class="filter-btn px-5 py-2 rounded-full border border-white/20 text-sm text-white/70 hover:bg-accent hover:text-black transition" data-filter="WEB">Web</button>
     <button class="filter-btn px-5 py-2 rounded-full border border-white/20 text-sm text-white/70 hover:bg-accent hover:text-black transition" data-filter="APP">App</button>
+    <button class="filter-btn px-5 py-2 rounded-full border border-white/20 text-sm text-white/70 hover:bg-accent hover:text-black transition" data-filter="NET">Network</button>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
-    <!-- Project cards will render here dynamically -->
-  </div>
+    </div>
 </section>
 
-<!-- MODAL -->
 <div id="modal" class="fixed inset-0 bg-black/95 backdrop-blur-sm hidden z-50 flex items-end md:items-center justify-center transition-opacity duration-500">
   <button onclick="closeProject()" class="absolute top-6 right-6 text-white/50 hover:text-white bg-white/10 p-2 rounded-full z-[60] transition">
     <i class="fas fa-times"></i>
@@ -153,9 +151,50 @@
 </div>
 
 <script>
+// I have merged your beautiful design with the complete data list here
 const projectsData = {
-  "freshdash": { title: "FreshDash UI Design", desc: "UI & UX design for grocery e-commerce app including AI meal planner and order tracking.", tags: ["UI/UX","CANVA","DESIGN"], images: ["FreshDash Logo.png","Splash Screen.png","Home page.png"] },
-  "dwaspa": { title: "DWASPA System", desc: "Spa management web system with bookings, analytics, and services.", tags: ["WEB","MANAGEMENT","SYSTEM"], images: ["DWASPA Logo.png","DWASPA Login.png"] }
+  "freshdash": { 
+    title: "FreshDash UI Design", 
+    desc: "Comprehensive UI & UX design for a grocery e-commerce application, featuring an AI meal planner, seamless checkout flow, and detailed order tracking.", 
+    tags: ["UI/UX","APP","DESIGN"], 
+    images: ["FreshDash Logo.png", "Splash Screen.png", "Login & Register page.png", "Home page.png", "Splash Screen (2).png", "Product Details.png", "Shopping Cart.png", "Cheeckout.png", "Order Confirmation.png", "User Profile.png", "AI-Powered Meal Planner.png"] 
+  },
+  "dwaspa": { 
+    title: "DWASPA System", 
+    desc: "A complete Spa management web system handling customer bookings, payment gateways, service management, and financial analytics dashboards.", 
+    tags: ["WEB","SYSTEM","MANAGEMENT"], 
+    images: ["DWASPA Logo.png", "DWASPA Login.png", "DWASPA Customer Create Acc.png", "DWASPA Customer Dashboard.png", "DWASPA Customer Booking.png", "DWASPA Customer Payment.png", "DWASPA Management Dashboard.png", "DWASPA Service Management.png", "DWASPA Management Financial.png"] 
+  },
+  "dwanaconnect": {
+    title: "D'WanaConnect",
+    desc: "Internal business communication system designed to streamline corporate workflows and employee interaction.",
+    tags: ["WEB", "SYSTEM", "BIZ"],
+    images: ["D'WanaConnect Logo.png","12.png","13.png","14.png","15.png","16.png","17.png","18.png","19.png","20.png","21.png"]
+  },
+  "limited-focus": {
+    title: "Limited Focus",
+    desc: "Award-winning productivity application (KL3IS Silver Medal) designed to enhance deep work sessions through restricted mobile usage.",
+    tags: ["APP", "MOBILE", "PRODUCTIVITY"],
+    images: Array.from({length: 35}, (_, i) => `${i+1}.png`) // Generates 1.png to 35.png
+  },
+  "car-community": {
+    title: "Car Community",
+    desc: "A niche social platform connecting car enthusiasts, featuring event organization, vehicle showcases, and community forums.",
+    tags: ["APP", "SOCIAL", "COMMUNITY"],
+    images: Array.from({length: 25}, (_, i) => `${i+1}.png`) // Generates 1.png to 25.png
+  },
+  "cisco-network": {
+    title: "Cisco Network Design",
+    desc: "Complex network topology design and simulation using Packet Tracer, demonstrating enterprise-level routing and switching.",
+    tags: ["NET", "CISCO", "INFRASTRUCTURE"],
+    images: ["1.png"]
+  },
+  "life-expectancy-dashboard": {
+    title: "Life Expectancy Analytics",
+    desc: "Interactive data visualization dashboard analyzing global life expectancy trends using real-world datasets.",
+    tags: ["WEB", "DATA", "DASHBOARD"],
+    images: ["1.png", "2.png"]
+  }
 };
 
 let currentProjectKey = "";
@@ -166,14 +205,22 @@ function renderProjects(filter="all") {
   grid.innerHTML = '';
   for(const key in projectsData) {
     const p = projectsData[key];
+    // Filter logic: if filter is 'all', show everything. Else check if tags include the filter.
     if(filter !== "all" && !p.tags.includes(filter)) continue;
+    
     const card = document.createElement("div");
     card.className = "project-card group";
     card.onclick = () => openProject(key);
-    card.innerHTML = `<img src="images/projects/${key}/${p.images[0]}" class="group-hover:scale-105 transition duration-500">
+    
+    // First image is thumbnail
+    card.innerHTML = `
+      <img src="images/projects/${key}/${p.images[0]}" class="group-hover:scale-105 transition duration-500">
       <div class="p-6">
         <h3 class="text-2xl font-bold mb-2">${p.title}</h3>
-        <p class="text-subtext text-sm">${p.desc}</p>
+        <p class="text-subtext text-sm line-clamp-2">${p.desc}</p>
+        <div class="flex gap-2 mt-4">
+            ${p.tags.slice(0,3).map(t => `<span class="text-xs border border-white/10 px-2 py-1 rounded text-gray-400">${t}</span>`).join('')}
+        </div>
       </div>`;
     grid.appendChild(card);
   }
@@ -202,7 +249,6 @@ function openProject(key){
     const span=document.createElement("span");
     span.className="px-4 py-1.5 rounded-full border border-white/10 bg-surface text-xs font-medium text-gray-300 tracking-wide";
     span.innerText=tag;
-    span.onclick=()=>navigator.clipboard.writeText(tag);
     tagsC.appendChild(span);
   });
   updateModal(); renderThumbnails();
@@ -210,33 +256,45 @@ function openProject(key){
 }
 
 function closeProject(){document.getElementById("modal").classList.add("hidden"); document.body.style.overflow='';}
+
 function changeSlide(dir){
   const images=projectsData[currentProjectKey].images;
   currentIndex=(currentIndex+dir+images.length)%images.length;
   updateModal(); updateThumbActive();
 }
+
 function jumpToSlide(idx){currentIndex=idx; updateModal(); updateThumbActive();}
+
 function updateModal(){
   const data=projectsData[currentProjectKey];
   document.getElementById("modal-img").src=`images/projects/${currentProjectKey}/${data.images[currentIndex]}`;
   document.getElementById("slide-counter").innerText=`${currentIndex+1} / ${data.images.length}`;
 }
+
 function renderThumbnails(){
   const container=document.getElementById("thumbnail-container"); container.innerHTML='';
   projectsData[currentProjectKey].images.forEach((img,idx)=>{
-    const btn=document.createElement("button"); btn.className=`thumb-item flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 ${idx===0?'border-accent opacity-100':'border-transparent opacity-60 hover:opacity-100'}`;
+    const btn=document.createElement("button"); 
+    btn.className=`thumb-item flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 ${idx===0?'border-accent opacity-100':'border-transparent opacity-60 hover:opacity-100'}`;
     btn.onclick=()=>jumpToSlide(idx);
-    const thumb=document.createElement("img"); thumb.src=`images/projects/${currentProjectKey}/${img}`; thumb.className="w-full h-full object-cover bg-white";
-    btn.appendChild(thumb); container.appendChild(btn);
+    
+    const thumb=document.createElement("img"); 
+    thumb.src=`images/projects/${currentProjectKey}/${img}`; 
+    thumb.className="w-full h-full object-cover bg-white";
+    
+    btn.appendChild(thumb); 
+    container.appendChild(btn);
   });
 }
+
 function updateThumbActive(){
   document.querySelectorAll(".thumb-item").forEach((el,idx)=>{
-    el.classList.toggle("border-accent",idx===currentIndex);
-    el.classList.toggle("opacity-100",idx===currentIndex);
-    el.classList.toggle("border-transparent",idx!==currentIndex);
-    el.classList.toggle("opacity-60",idx!==currentIndex);
-    if(idx===currentIndex) el.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"});
+    const isActive = idx===currentIndex;
+    el.classList.toggle("border-accent", isActive);
+    el.classList.toggle("opacity-100", isActive);
+    el.classList.toggle("border-transparent", !isActive);
+    el.classList.toggle("opacity-60", !isActive);
+    if(isActive) el.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"});
   });
 }
 
